@@ -24,7 +24,8 @@ if __name__ == "__main__":
         "Feedback and Request Bot",
         API_ID,
         API_HASH,
-        bot_token = BOT_TOKEN
+        bot_token = BOT_TOKEN,
+        plugins = dict(root="bot/handlers")
     )
 
     @app.on_message(filters.command("start") & filters.private)
