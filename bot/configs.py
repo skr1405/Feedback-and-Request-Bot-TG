@@ -7,3 +7,5 @@ class Config:
     API_HASH = environ.get("API_HASH")
     BOT_TOKEN = environ.get("BOT_TOKEN")
     OWNER_ID = environ.get("OWNER_ID")
+    GROUP_LINK = environ.get("GROUP_LINK")
+    CHANNEL_LINK = environ.get("CHANNEL_LINK")
