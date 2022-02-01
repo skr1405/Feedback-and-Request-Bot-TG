@@ -10,6 +10,7 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
 BOT_TOKEN = environ.get("BOT_TOKEN")
+print(BOT_TOKEN)
 
 app = Client("Feedback and Request Bot", bot_token=BOT_TOKEN)
 app.run()
