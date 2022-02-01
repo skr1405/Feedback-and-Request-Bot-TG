@@ -24,8 +24,7 @@ if __name__ == "__main__":
         "Feedback and Request Bot",
         API_ID,
         API_HASH,
-        bot_token = BOT_TOKEN,
-        plugins = dict(root="handlers")
+        bot_token = BOT_TOKEN
     )
 
     @app.on_message(filters.command("start") & filters.private)
@@ -33,6 +32,7 @@ if __name__ == "__main__":
         await client.send_message(message.chat.id, "Hello")
 
     app.start()
+    app
     logging.info("Pyrogram Client Started...✅")
     idle()
     app.stop()
