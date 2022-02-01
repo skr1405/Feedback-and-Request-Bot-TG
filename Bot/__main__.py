@@ -1,7 +1,7 @@
 # Importing Required Modules
 import logging
 
-from pyrogram import Client, idle
+from pyrogram import Client, idle, filters
 from os import environ
 
 
