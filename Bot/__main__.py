@@ -1,7 +1,7 @@
 # Importing Required Modules
 import logging
 
-from pyrogram import Client
+from pyrogram import Client, idle
 from os import environ
 
 
@@ -30,7 +30,5 @@ if __name__ == "__main__":
 
     app.start()
     logging.info("Pyrogram Client Started...")
-
-
-
-
+    idle()
+    app.stop()
