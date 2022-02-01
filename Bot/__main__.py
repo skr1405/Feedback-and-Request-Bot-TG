@@ -34,6 +34,9 @@ if __name__ == "__main__":
 
     app.start()
     logging.info("Pyrogram Client Started...✅")
-    logging.info(os.walk("Handlers"))
+    for root, dir, files in os.walk("Handlers"):
+        logging.info(root)
+        logging.info(dir)
+        logging.info(files)
     idle()
     app.stop()
