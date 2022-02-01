@@ -25,8 +25,8 @@ if __name__ == "__main__":
         API_HASH,
         bot_token=BOT_TOKEN
     )
-    
-    app.start()
+
+    app.run()
 
 
     app.send_message(environ.get("OWNER_ID"), "heLLO")
