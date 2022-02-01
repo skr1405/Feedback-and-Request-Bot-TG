@@ -1,6 +1,5 @@
 # Importing Required Modules
 import logging
-import os
 
 from pyrogram import Client, idle, filters
 from configs import Config as vars
