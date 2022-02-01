@@ -23,24 +23,13 @@ if __name__ == "__main__":
         "Feedback and Request Bot",
         API_ID,
         API_HASH,
-        bot_token=BOT_TOKEN
+        bot_token=BOT_TOKEN,
+        plugins=dict(root="Handlers")
     )
-
-    with app:
-        app.send_message("me", "dafsdf")
 
 
     app.run()
     logging.info("Pyrogram Client Started...")
-
-
-    # app.send_message(environ.get("OWNER_ID"), "heLLO")
-    a = app.send_message("me", "heLLO")
-    print(a)
-    logging.info(a)
-
-
-print(__name__)
 
 
 
