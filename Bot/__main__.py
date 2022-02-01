@@ -29,7 +29,8 @@ if __name__ == "__main__":
     app.run()
 
 
-    app.send_message(environ.get("OWNER_ID"), "heLLO")
+    # app.send_message(environ.get("OWNER_ID"), "heLLO")
+    app.send_message("me", "heLLO")
 
 
 
