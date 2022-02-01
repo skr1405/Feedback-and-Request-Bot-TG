@@ -25,7 +25,7 @@ if __name__ == "__main__":
         API_ID,
         API_HASH,
         bot_token = BOT_TOKEN,
-        plugins = dict(root="Handlers")
+        plugins = dict(root="handlers")
     )
 
     @app.on_message(filters.command("start") & filters.private)
