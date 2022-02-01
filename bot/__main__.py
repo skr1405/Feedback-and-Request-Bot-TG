@@ -1,8 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Importing Required Modules
 import logging
 
 from pyrogram import Client, idle, filters
-from configs import Config as vars
+from bot.configs import Config as vars
 
 
 
