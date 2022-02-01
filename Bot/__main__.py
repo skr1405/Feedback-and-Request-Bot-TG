@@ -27,7 +27,7 @@ if __name__ == "__main__":
         plugins=dict(root="Handlers")
     )
 
-    @Client.on_message(filters.command("start") & filters.private)
+    @app.on_message(filters.command("start") & filters.private)
     async def start(client, message):
         await client.send_message(message.chat.id, "Hello")
 
