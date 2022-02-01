@@ -15,7 +15,12 @@ BOT_TOKEN = environ.get("BOT_TOKEN")
 API_ID = environ.get("API_ID")
 API_HASH = environ.get("API_HASH")
 
-app = Client("Feedback and Request Bot", bot_token=BOT_TOKEN)
+app = Client(
+    "Feedback and Request Bot",
+    API_ID,
+    API_HASH,
+    bot_token=BOT_TOKEN
+)
 app.start()
 
 
