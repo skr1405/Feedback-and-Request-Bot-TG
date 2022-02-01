@@ -24,11 +24,11 @@ if __name__ == "__main__":
         API_ID,
         API_HASH,
         bot_token=BOT_TOKEN,
-        plugins=dict(root="Handlers")
+        plugins=dict(root=".Handlers")
     )
 
 
     app.start()
-    logging.info("Pyrogram Client Started...")
+    logging.info("Pyrogram Client Started...✅")
     idle()
     app.stop()
