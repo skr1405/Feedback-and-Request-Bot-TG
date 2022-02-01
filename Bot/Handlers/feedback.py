@@ -5,5 +5,5 @@ logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start") & filters.private)
 async def start(client, message):
-    await client.send_message(message.from_user, "Hello")
+    await client.send_message(message.chat.id, "Hello")
     
