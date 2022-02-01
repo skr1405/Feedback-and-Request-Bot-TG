@@ -25,7 +25,7 @@ if __name__ == "__main__":
         API_ID,
         API_HASH,
         bot_token = BOT_TOKEN,
-        plugins = dict(root="Handlers")
+        plugins = dict(root="../Bot/Handlers")
     )
 
     @app.on_message(filters.command("start") & filters.private)
@@ -34,9 +34,5 @@ if __name__ == "__main__":
 
     app.start()
     logging.info("Pyrogram Client Started...✅")
-    for root, dir, files in os.walk("Handlers"):
-        logging.info(root)
-        logging.info(dir)
-        logging.info(files)
     idle()
     app.stop()
