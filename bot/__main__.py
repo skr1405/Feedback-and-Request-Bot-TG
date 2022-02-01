@@ -13,7 +13,7 @@ if __name__ == "__main__":
             level=logging.INFO,
             format="%(asctime)s %(levelname)s %(threadName)s %(name)s %(message)s",
         )
-    logging.getLogger("pyrogram").setLevel(logging.ERROR)
+    logging.getLogger("pyrogram").setLevel(logging.INFO)
 
 
     BOT_TOKEN = environ.get("BOT_TOKEN")
