@@ -23,7 +23,7 @@ async def start(bot, message):
     await message.reply_text(
         text="**Hi {}!**\n".format(message.chat.first_name)+START_TEXT,
         reply_markup=InlineKeyboardMarkup([
-            [ InlineKeyboardButton(text="GROUP", url=f"{vars.GROUP_LINK}"), InlineKeyboardButton(text="CHANNEL", url=f"{vars.CHANNEL_LINK}")]
+            [ InlineKeyboardButton(text="JOIN GROUP", url=f"{vars.GROUP_LINK}"), InlineKeyboardButton(text="JOIN CHANNEL", url=f"{vars.CHANNEL_LINK}")]
         ])
     )
 
