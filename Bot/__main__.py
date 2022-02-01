@@ -1,5 +1,6 @@
 # Importing Required Modules
 import logging
+import os
 
 from pyrogram import Client, idle, filters
 from os import environ
@@ -23,8 +24,8 @@ if __name__ == "__main__":
         "Feedback and Request Bot",
         API_ID,
         API_HASH,
-        bot_token=BOT_TOKEN,
-        plugins=dict(root="./Handlers")
+        bot_token = BOT_TOKEN,
+        plugins = dict(root="Handlers")
     )
 
     @app.on_message(filters.command("start") & filters.private)
@@ -33,5 +34,6 @@ if __name__ == "__main__":
 
     app.start()
     logging.info("Pyrogram Client Started...✅")
+    logging.info(os.walk("Handlers"))
     idle()
     app.stop()
