@@ -8,7 +8,7 @@ logging.getLogger(__name__)
 # IMPORTANT VARIABLES
 owner_id = environ.get("OWNER_ID")
 
-LOG_TEXT = "ID: <code>{}</code>\nFirst Name: <a href='tg://user?id={}'>{}{}</a>\nDC ID: <code>{}</code>"
+LOG_TEXT = "ID: <code>{}</code>\nFirst Name: <a href='tg://user?id={}'>{} {}</a>\nDC ID: <code>{}</code>"
 
 
 # MAIN STUFF
