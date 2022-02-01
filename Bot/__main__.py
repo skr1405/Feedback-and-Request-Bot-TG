@@ -27,6 +27,7 @@ if __name__ == "__main__":
     )
 
     app.run()
+    logging.info("Pyrogram Client Started...")
 
 
     # app.send_message(environ.get("OWNER_ID"), "heLLO")
