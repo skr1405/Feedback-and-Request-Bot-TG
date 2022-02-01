@@ -36,7 +36,7 @@ if __name__ == "__main__":
     logging.info(a)
 
 
-
+print(__name__)
 
 
 
