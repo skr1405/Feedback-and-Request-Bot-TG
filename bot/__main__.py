@@ -3,7 +3,7 @@ import logging
 import os
 
 from pyrogram import Client, idle, filters
-from os import environ
+from configs import Config as vars
 
 
 
@@ -11,12 +11,12 @@ if __name__ == "__main__":
     # Logging Stuff
     logging.basicConfig(
             level=logging.INFO,
-            format="%(asctime)s %(levelname)s %(threadName)s %(name)s %(message)s",
+            format="%(asctime)s %(levelname)s %(name)s %(message)s",
         )
     logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-    BOT_TOKEN = environ.get("BOT_TOKEN")
+    BOT_TOKEN = vars.B
     API_ID = environ.get("API_ID")
     API_HASH = environ.get("API_HASH")
 
@@ -28,12 +28,7 @@ if __name__ == "__main__":
         plugins = dict(root="bot/handlers")
     )
 
-    @app.on_message(filters.command("start") & filters.private)
-    async def start(client, message):
-        await client.send_message(message.chat.id, "Hello")
-
     app.start()
-    app
     logging.info("Pyrogram Client Started...✅")
     idle()
     app.stop()
