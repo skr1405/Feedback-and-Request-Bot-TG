@@ -26,6 +26,10 @@ if __name__ == "__main__":
         bot_token=BOT_TOKEN
     )
 
+    with app:
+        app.send_message("me", "dafsdf")
+
+
     app.run()
     logging.info("Pyrogram Client Started...")
 
