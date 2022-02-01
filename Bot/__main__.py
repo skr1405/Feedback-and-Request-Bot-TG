@@ -33,6 +33,7 @@ if __name__ == "__main__":
     # app.send_message(environ.get("OWNER_ID"), "heLLO")
     a = app.send_message("me", "heLLO")
     print(a)
+    logging.info(a)
 
 
 
