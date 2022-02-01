@@ -1,6 +1,6 @@
 # Importing Required Modules
 import logging
-from pyrogram import Client, filters
+from pyrogram import Client
 from os import environ
 
 logging.basicConfig(
@@ -12,6 +12,7 @@ logging.getLogger("pyrogram").setLevel(logging.ERROR)
 BOT_TOKEN = environ.get("BOT_TOKEN")
 
 app = Client("Feedback and Request Bot", bot_token=BOT_TOKEN)
+app.run()
 
 
 app.send_message(environ.get("OWNER_ID"), "heLLO")
