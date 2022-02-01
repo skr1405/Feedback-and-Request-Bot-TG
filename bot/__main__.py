@@ -2,7 +2,7 @@
 import logging
 
 from pyrogram import Client, idle, filters
-from bot.configs import Config as vars
+from configs import Config as vars
 
 
 
