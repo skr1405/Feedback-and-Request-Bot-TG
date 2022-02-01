@@ -28,7 +28,7 @@ if __name__ == "__main__":
     )
 
 
-    app.run()
+    app.start()
     logging.info("Pyrogram Client Started...")
 
 
