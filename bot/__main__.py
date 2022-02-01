@@ -16,9 +16,9 @@ if __name__ == "__main__":
     logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-    BOT_TOKEN = vars.B
-    API_ID = environ.get("API_ID")
-    API_HASH = environ.get("API_HASH")
+    BOT_TOKEN = vars.BOT_TOKEN
+    API_ID = vars.API_ID
+    API_HASH = vars.API_HASH
 
     app = Client(
         "Feedback and Request Bot",
