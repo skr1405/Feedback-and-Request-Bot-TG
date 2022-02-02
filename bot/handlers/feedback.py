@@ -25,7 +25,7 @@ def start(update, context):
     )
     inline_keyboard = [[InlineKeyboardButton("💬GROUP💬", url = f"{vars.GROUP_LINK}"), InlineKeyboardButton("📢CHANNEL📢", url = f"{vars.CHANNEL_LINK}")]]
     update.message.reply_text(
-        "**Hi {}!**\n".format(update.message.chat.first_name)+START_TEXT,
+        "*Hi {}!*\n".format(update.message.chat.first_name)+START_TEXT,
         reply_markup = InlineKeyboardMarkup(inline_keyboard),
         parse_mode = "markdown"
     )
