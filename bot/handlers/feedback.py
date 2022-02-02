@@ -1,18 +1,24 @@
 import logging
 
+from telegram.ext import CommandHandler, Filters
 from bot.configs import Config as vars
 
 logging.getLogger(__name__)
 
 
 def add_feedback_handlers(bot):
-    pass
+    bot.add_handler(CommandHandler("start", start, filters=Filters.private, run_async=True))
 
 # IMPORTANT VARIABLES
-owner_id = vars.OWNER_ID
+OWNER_ID = vars.OWNER_ID
 
 LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nDC ID: <code>{}</code>"
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
+
+
+def start(update, context):
+    context.bot.send_message(update.message.chat.id, "HEllo")
+
 
 '''
 # MAIN STUFF
