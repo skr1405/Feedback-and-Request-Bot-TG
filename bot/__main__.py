@@ -16,6 +16,10 @@ logging.basicConfig(
 logging.getLogger().setLevel(logging.INFO)
 
 
+def error(update, context):
+    logging.warning(f"Update {update} caused error {context.error}")
+
+
 # MAIN STUFF
 def main():
     # GETTING VARIABLES
@@ -28,6 +32,8 @@ def main():
     dp = updater.dispatcher
 
     add_feedback_handlers(dp)
+
+    dp.add_error_handler(error)
 
     # STARTING WEBHOOK
     updater.start_webhook(
