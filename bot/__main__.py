@@ -12,7 +12,7 @@ logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s %(message)s",
     )
-logging.getLogger().setLevel(logging.WARNING)
+logging.getLogger().setLevel(logging.DEBUG)
 
 def start(update, context):
     update.message.reply_text('Hi! \nWelcome to the *IMDb Bot*. \nSend me the name of any movie or TV show to get its details. \nHappy viewing! \n \nCreated by [SKR](https://t.me/SKR1405)',parse_mode='markdown', disable_web_page_preview=True)
@@ -39,7 +39,7 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
 
-    logging.info("Pyrogram Client Started...✅")
+    logging.info("Bot Started...✅")
     updater.idle()
 
 
