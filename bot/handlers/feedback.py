@@ -14,7 +14,7 @@ owner_id = vars.OWNER_ID
 LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nDC ID: <code>{}</code>"
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
 
-
+'''
 # MAIN STUFF
 @Client.on_message(filters.command('start') & filters.private)
 async def start(bot, message):
@@ -30,3 +30,4 @@ async def start(bot, message):
         ])
     )
 
+'''
