@@ -1,6 +1,7 @@
 import logging
 
 from telegram.ext import CommandHandler, Filters
+from telegram import InlineKeyboardMarkup
 from bot.configs import Config as vars
 
 logging.getLogger(__name__).setLevel(logging.INFO)
@@ -12,7 +13,7 @@ def add_feedback_handlers(bot):
 # IMPORTANT VARIABLES
 OWNER_ID = vars.OWNER_ID
 
-LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>"
+LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nStarted the bot..."
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
 
 
@@ -22,8 +23,10 @@ def start(update, context):
         text = LOG_TEXT.format(update.message.chat.id,update.message.chat.id,update.message.chat.first_name,"" if update.message.chat.last_name == None else " "+update.message.chat.last_name),
         parse_mode = "html"
     )
+    
     update.message.reply_text(
         "**Hi {}!**\n".format(update.message.chat.first_name)+START_TEXT,
+        parse_mode = "markdown"
     )
 
 
