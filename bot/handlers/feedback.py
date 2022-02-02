@@ -12,7 +12,7 @@ OWNER_ID = vars.OWNER_ID
 
 LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nStarted the bot..."
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
-IF_TEXT = "<b>Message from:</b> {}\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>\n\n{}"
+IF_TEXT = "<b>Message from:</b> <code>{}</code>\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>\n\n{}"
 
 
 
@@ -67,7 +67,7 @@ def pm_text(update, context):
     )
 
     for i in update.message.entities:
-        print(type(i))
+        print(i.offset)
 
 
 
