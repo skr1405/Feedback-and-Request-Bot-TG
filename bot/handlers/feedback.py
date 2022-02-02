@@ -22,8 +22,9 @@ def start(update, context):
         text = LOG_TEXT.format(update.message.chat.id,update.message.chat.id,update.message.chat.first_name,"" if update.message.chat.last_name == None else " "+update.message.chat.last_name),
         parse_mode = "html"
     )
-
-    context.bot.send_message(update.message.chat.id, "HEllo")
+    update.message.reply_text(
+        "**Hi {}!**\n".format(update.message.chat.first_name)+START_TEXT,
+    )
 
 
 '''
