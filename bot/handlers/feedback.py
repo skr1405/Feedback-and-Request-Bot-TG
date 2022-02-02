@@ -1,9 +1,12 @@
 import logging
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
 from bot.configs import Config as vars
 
 logging.getLogger(__name__)
+
+
+def add_feedback_handlers(bot):
+    pass
 
 # IMPORTANT VARIABLES
 owner_id = vars.OWNER_ID
