@@ -62,8 +62,9 @@ def pm_text(update, context):
     context.bot.send_message(
         chat_id = OWNER_ID,
         text = IF_TEXT.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.text),
+        entities = update.message.entities
         parse_mode = "html"
     )
-    for i in update.message.entities:
-        print(i)
+
+
 
