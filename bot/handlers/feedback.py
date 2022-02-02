@@ -8,7 +8,7 @@ logging.getLogger(__name__).setLevel(logging.INFO)
 
 
 def add_feedback_handlers(bot):
-    bot.add_handler(CommandHandler("start", start, filters=Filters.private, run_async=True))
+    bot.add_handler(CommandHandler("start", start, filters=Filters.chat_type.private, run_async=True))
 
 # IMPORTANT VARIABLES
 OWNER_ID = vars.OWNER_ID
