@@ -59,9 +59,9 @@ def start(update, context):
 def pm_text(update, context):
     info = update.message.from_user
     reference_id = info.id
-    update.message.copy(
+    context.bot.send_message(
         chat_id = OWNER_ID,
-        caption = IF_TEXT.format(reference_id, info.first_name, update.message.text),
+        text = IF_TEXT.format(reference_id, info.first_name, update.message.text),
         parse_mode = "html"
     )
 
