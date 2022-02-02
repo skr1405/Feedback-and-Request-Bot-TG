@@ -1,33 +1,50 @@
 # Importing Required Modules
 import logging
 
-from pyrogram import Client, idle, filters
+from telegram.ext import Updater, CommandHandler
+# from telegram.
+
+from bot.handlers.feedback import add_feedback_handlers
 from bot.configs import Config as vars
+
+# Logging Stuff
+logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s %(message)s",
+    )
+logging.getLogger().setLevel(logging.WARNING)
+
+def start(update, context):
+    update.message.reply_text('Hi! \nWelcome to the *IMDb Bot*. \nSend me the name of any movie or TV show to get its details. \nHappy viewing! \n \nCreated by [SKR](https://t.me/SKR1405)',parse_mode='markdown', disable_web_page_preview=True)
+
+
+
+def main():
+    # GETTING VARIABLES
+    BOT_TOKEN = vars.BOT_TOKEN
+    BASE_URL_OF_BOT = vars.BASE_URL_OF_BOT
+    PORT = vars.PORT
+
+    updater = Updater(BOT_TOKEN, workers=100)
+
+    dp = updater.dispatcher
+
+
+    updater.start_webhook(
+        listen="0.0.0.0",
+        port = PORT,
+        url_path = BOT_TOKEN,
+        webhook_url = BASE_URL_OF_BOT + BOT_TOKEN
+    )
+
+    dp.add_handler(CommandHandler("start", start))
+
+    logging.info("Pyrogram Client Started...✅")
+    updater.idle()
+
 
 
 
 if __name__ == "__main__":
-    # Logging Stuff
-    logging.basicConfig(
-            level=logging.INFO,
-            format="%(asctime)s %(levelname)s %(name)s %(message)s",
-        )
-    logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-
-    BOT_TOKEN = vars.BOT_TOKEN
-    API_ID = vars.API_ID
-    API_HASH = vars.API_HASH
-
-    app = Client(
-        "Feedback and Request Bot",
-        API_ID,
-        API_HASH,
-        bot_token = BOT_TOKEN,
-        plugins = dict(root="bot/handlers")
-    )
-
-    app.start()
-    logging.info("Pyrogram Client Started...✅")
-    idle()
-    app.stop()
+    main()
