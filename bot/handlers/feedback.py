@@ -64,4 +64,5 @@ def pm_text(update, context):
         text = IF_TEXT.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.text),
         parse_mode = "html"
     )
+    logging.info(update.message.entities)
 
