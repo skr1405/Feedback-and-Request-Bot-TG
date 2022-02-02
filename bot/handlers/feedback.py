@@ -66,5 +66,8 @@ def pm_text(update, context):
         parse_mode = "html"
     )
 
+    for i in update.message.entities:
+        print(i)
+
 
 
