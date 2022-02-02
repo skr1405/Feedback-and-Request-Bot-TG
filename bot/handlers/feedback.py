@@ -67,9 +67,7 @@ def pm_text(update, context):
     )
 
     for i in update.message.entities:
-        print(i)
-
-    print(update.message.parse_entities())
+        print(type(i))
 
 
 
