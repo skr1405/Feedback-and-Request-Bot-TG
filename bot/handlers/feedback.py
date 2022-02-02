@@ -12,7 +12,7 @@ OWNER_ID = vars.OWNER_ID
 
 LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nStarted the bot..."
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
-IF_TEXT = "<b>Message from:</b> {}\n<b>Name:</b> {}\n\n{}"
+IF_TEXT = "<b>Message from:</b> {}\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>\n\n{}"
 
 
 
@@ -61,7 +61,7 @@ def pm_text(update, context):
     reference_id = info.id
     context.bot.send_message(
         chat_id = OWNER_ID,
-        text = IF_TEXT.format(reference_id, info.first_name, update.message.text),
+        text = IF_TEXT.format(reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.text),
         parse_mode = "html"
     )
 
