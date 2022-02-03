@@ -13,6 +13,7 @@ OWNER_ID = vars.OWNER_ID
 LOG_TEXT = "ID: <code>{}</code>\nName: <a href='tg://user?id={}'>{}{}</a>\nStarted the bot..."
 START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me..."
 IF_TEXT = "<b>Message from:</b> <code>{}</code>\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>\n\n{}"
+IF_CONTENT = "<b>Message from:</b> <code>{}</code>\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>"
 
 
 
@@ -27,6 +28,10 @@ def add_feedback_handlers(bot):
 
     bot.add_handler(
         MessageHandler(filters=Filters.chat_type.private & Filters.text, callback=pm_text, run_async=True)
+    )
+
+    bot.add_handler(
+        MessageHandler(filters=Filters.chat_type.private & Filters.document, callback=pm_document, run_async=True)
     )
 
 
@@ -87,6 +92,14 @@ def pm_text(update, context):
         parse_mode = "html"
     )
 
+def pm_document(update, context):
+    info = update.message.from_user
+    reference_id = info.id
+    context.bot.copy(
+        chat_id = OWNER_ID,
+        caption = IF_CONTENT.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name),
+        parse_mode = "html"
+    )
     
 
 
