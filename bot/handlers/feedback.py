@@ -15,7 +15,7 @@ START_TEXT = "You Can Give Feedback and Contact Admins by Sending Messages to Me
 MESSAGE = "<b>Message from:</b> <code>{}</code>\n<b>Name:</b> <a href='tg://user?id={}'>{}{}</a>\n\n{}"
 
 
-
+# ADDING HANDLERS
 def add_feedback_handlers(bot):
     bot.add_handler(
         CommandHandler(command="start", callback=start, filters=Filters.chat_type.private, run_async=True)
@@ -28,17 +28,6 @@ def add_feedback_handlers(bot):
     bot.add_handler(
         MessageHandler(filters=Filters.chat_type.private, callback=user, run_async=True)
     )
-
-
-
-
-
-
-
-
-
-
-
 
 
 

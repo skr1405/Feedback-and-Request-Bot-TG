@@ -1,10 +1,12 @@
 # Importing Required Modules
 import logging
+from signal import Handlers
 
 from telegram.ext import Updater
 # from telegram.
 
 from bot.handlers.feedback import add_feedback_handlers
+from bot.handlers.request import add_request_handlers
 from bot.configs import Config as vars
 
 
@@ -36,7 +38,9 @@ def main():
     # GET DISPATCHER TO ADD HANDLERS
     dp = updater.dispatcher
 
+    # SETTING HANDLERS
     add_feedback_handlers(dp)
+    add_request_handlers(dp)
 
     dp.add_error_handler(error)
 
