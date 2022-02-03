@@ -22,7 +22,7 @@ def add_feedback_handlers(bot):
     )
 
     bot.add_handler(
-        MessageHandler(filters=Filters.user(OWNER_ID) & Filters.chat_type.private & Filters.text, callback=reply_text, run_async=True)
+        MessageHandler(filters=Filters.user(OWNER_ID) & Filters.chat_type.private, callback=reply, run_async=True)
     )
 
     bot.add_handler(
@@ -59,23 +59,26 @@ def start(update, context):
         parse_mode = "markdown"
     )
 
-def reply_text(update, context):
-    reference_id = None
+def reply(update, context):
     if update.message.reply_to_message is not None:
-        file = update.message.reply_to_message
+        replied_to = update.message.reply_to_message
         try:
-            reference_id = file.text.split()[2]
+            reference_id = replied_to.text.split()[2]
         except Exception:
-            pass
-        try:
-            reference_id = file.caption.split()[2]
-        except Exception:
-            pass
-        context.bot.send_message(
-            text=update.message.text_html,
-            chat_id=int(reference_id),
-            parse_mode = "html"
-        )
+            reference_id = replied_to.caption.split()[2]
+
+        if update.message.text != None:
+            context.bot.send_message(
+                text=update.message.text_html,
+                chat_id=int(reference_id),
+                parse_mode = "html"
+            )
+        else:
+            update.message.copy(
+                caption=update.message.caption_html,
+                chat_id=int(reference_id),
+                parse_mode = "html"
+            )
         update.message.reply_text(
             text = "Message Sent...",
             quote = True
@@ -96,16 +99,6 @@ def user(update, context):
             caption = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.caption_html),
             parse_mode = "html"
         )
-
-# def pm_document(update, context):
-#     info = update.message.from_user
-#     reference_id = info.id
-#     update.message.copy(
-#         chat_id = OWNER_ID,
-#         caption = IF_CONTENT.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.caption_html),
-#         parse_mode = "html"
-#     )
-    
 
 
 
