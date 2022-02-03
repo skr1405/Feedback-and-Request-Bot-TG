@@ -14,5 +14,5 @@ OWNER_ID = vars.OWNER_ID
 
 
 # ADDING HANDLERS
-def add_feedback_handlers(bot):
+def add_request_handlers(bot):
     pass
