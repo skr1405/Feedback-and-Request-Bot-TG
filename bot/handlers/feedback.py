@@ -69,7 +69,7 @@ def reply(update, context):
                 parse_mode = "html"
             )
         update.message.reply_text(
-            text = "Message Sent...",
+            text = "Message Sent...✅",
             quote = True
         )
 
