@@ -17,6 +17,11 @@ logging.getLogger().setLevel(logging.INFO)
 
 
 def error(update, context):
+    OWNER_ID = vars.OWNER_ID
+    context.bot.send_message(
+        chat_id = OWNER_ID,
+        text = f"Update {update} caused error {context.error}"
+    )
     logging.warning(f"Update {update} caused error {context.error}")
 
 
