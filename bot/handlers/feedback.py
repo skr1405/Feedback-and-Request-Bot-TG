@@ -95,7 +95,7 @@ def pm_text(update, context):
 def pm_document(update, context):
     info = update.message.from_user
     reference_id = info.id
-    context.bot.copy(
+    update.bot.copy(
         chat_id = OWNER_ID,
         caption = IF_CONTENT.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name),
         parse_mode = "html"
