@@ -71,7 +71,7 @@ def reply_text(update, context):
             reference_id = file.caption.split()[2]
         except Exception:
             pass
-        sent = context.bot.send_message(
+        context.bot.send_message(
             text=update.message.text_html,
             chat_id=int(reference_id),
             parse_mode = "html"
@@ -84,25 +84,16 @@ def reply_text(update, context):
 def user(update, context):
     info = update.message.from_user
     reference_id = info.id
-    message_by_user = None
-    try:
-        message_by_user = update.message.text_html
-    except Exception:
-        pass
-    try:
-        message_by_user = update.message.caption_html
-    except Exception:
-        pass
     if update.message.text != None:
         context.bot.send_message(
             chat_id = OWNER_ID,
-            text = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, message_by_user),
+            text = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.text_html),
             parse_mode = "html"
         )
     else:
         update.message.copy(
             chat_id = OWNER_ID,
-            caption = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, message_by_user),
+            caption = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.caption_html),
             parse_mode = "html"
         )
 
