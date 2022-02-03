@@ -71,10 +71,14 @@ def reply_text(update, context):
             reference_id = file.caption.split()[2]
         except Exception:
             pass
-        context.bot.send_message(
+        sent = context.bot.send_message(
             text=update.message.text_html,
             chat_id=int(reference_id),
             parse_mode = "html"
+        )
+        update.message.reply_text(
+            text = "Message Sent...",
+            quote = True
         )
 
 def user(update, context):
@@ -89,11 +93,18 @@ def user(update, context):
         message_by_user = update.message.caption_html
     except Exception:
         pass
-    context.bot.send_message(
-        chat_id = OWNER_ID,
-        text = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, message_by_user),
-        parse_mode = "html"
-    )
+    if update.message.text != None:
+        context.bot.send_message(
+            chat_id = OWNER_ID,
+            text = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, message_by_user),
+            parse_mode = "html"
+        )
+    else:
+        update.message.copy(
+            chat_id = OWNER_ID,
+            caption = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, message_by_user),
+            parse_mode = "html"
+        )
 
 # def pm_document(update, context):
 #     info = update.message.from_user
