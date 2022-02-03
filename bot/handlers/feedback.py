@@ -22,7 +22,7 @@ def add_feedback_handlers(bot):
     )
 
     bot.add_handler(
-        MessageHandler(filters=Filters.user(OWNER_ID) & Filters.chat_type.private & Filters.text, callback=reply_text, run_async=True)
+        MessageHandler(filters=Filters.user(OWNER_ID) & Filters.text, callback=reply_text, run_async=True)
     )
 
     bot.add_handler(
