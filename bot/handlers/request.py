@@ -35,6 +35,10 @@ def add_request_handlers(bot):
     )
 
     bot.add_handler(
+        CallbackQueryHandler(pattern="rejected", callback=rejected, run_async=True)
+    )
+
+    bot.add_handler(
         CallbackQueryHandler(pattern="reject", callback=reject, run_async=True)
     )
 
