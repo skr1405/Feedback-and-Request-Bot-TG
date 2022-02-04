@@ -17,6 +17,7 @@ CHANNEL_LINK = vars.REQUEST_CHANNEL_LINK
 
 ON_REQUEST = "*👋Hello *[{}](tg://user?id={})*\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy. So, This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
 REQUEST = "*Request By *[{}](tg://user?id={})*\n\nRequest: {}*"
+ON_DONE = "FBF"
 IF_REQUEST_EMPTY = "<b>👋Hello <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
@@ -29,6 +30,10 @@ def add_request_handlers(bot):
 
     bot.add_handler(
         CallbackQueryHandler(pattern="done", callback=done, run_async=True)
+    )
+
+    bot.add_handler(
+        CallbackQueryHandler(pattern="reject", callback=reject, run_async=True)
     )
 
 
@@ -49,7 +54,7 @@ def user_request(update, context):
     if update.message.text.lower().startswith("#request"):
         info = update.message.from_user
         message = update.message.text[8:].strip()
-        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("🚫Reject", callback_data="hell"), InlineKeyboardButton("Done✅", callback_data="done")]]
+        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("🚫Reject", callback_data="reject"), InlineKeyboardButton("Done✅", callback_data="done")]]
         context.bot.send_message(
             chat_id = CHANNEL_ID,
             text = REQUEST.format(info.first_name, info.id, message),
@@ -68,6 +73,21 @@ def user_request(update, context):
 #**************CALLBACK HANDLERS*****************
 
 def done(update, context):
+    user_info = update.callback_query.from_user
+    user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id).status
+    if (user_status == "creator") or (user_status == "administrator"):
+        original_text = update.callback_query.message.text_markdown_v2
+        update.callback_query.message.edit_text(
+            text = f"*COMPLETED✅\n\n*~{original_text}~",
+            parse_mode = "markdownv2"
+        )
+    else:
+        update.callback_query.answer(
+            text = "Who the hell are you?\nYou are not Admin😠",
+            show_alert = True
+        )
+
+def reject(update, context):
     user_info = update.callback_query.from_user
     user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id).status
     if (user_status == "creator") or (user_status == "administrator"):
