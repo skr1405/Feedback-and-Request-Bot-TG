@@ -52,6 +52,7 @@ def user_request(update, context):
         inline_keyboard = [[InlineKeyboardButton("⏳REQUEST STATUS⏳", url=CHANNEL_LINK)]]
         update.message.reply_text(
             text = ON_REQUEST.format(info.first_name, info.id, message),
+            quote = False,
             reply_markup = InlineKeyboardMarkup(inline_keyboard),
             parse_mode = "markdown"
         )
