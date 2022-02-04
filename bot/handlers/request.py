@@ -91,7 +91,7 @@ def done(update, context):
         details = re.match(r".*\[(.*)\].*id=(\d+)", original_text)
         context.bot.send_message(
             chat_id = GROUP_ID,
-            text = ON_DONE.format(details.group(1), details.group(2), "\n".join(original_text.split("\n")[2:])[9:], ("\n"+REQUEST_COMPLETE_TEXT) if REQUEST_COMPLETE_TEXT != "" else ""),
+            text = ON_DONE.format(details.group(1), details.group(2), "\n".join(original_text.split("\n")[2:])[9:-1], ("\n"+REQUEST_COMPLETE_TEXT) if REQUEST_COMPLETE_TEXT != "" else ""),
             parse_mode ="markdownv2"
         )
     else:
