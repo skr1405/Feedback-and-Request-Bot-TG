@@ -15,7 +15,7 @@ GROUP_ID = vars.REQUEST_GROUP_ID
 CHANNEL_ID = vars.REQUEST_CHANNEL_ID
 
 ON_REQUEST = "sdfjjsdfj"
-IF_REQUEST_EMPTY = "<b>Dear <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use</b>\n<code>#request &lt;Your Request&gt;</code>"
+IF_REQUEST_EMPTY = "<b>Dear <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
 
@@ -39,6 +39,7 @@ def user_request(update, context):
             text = IF_REQUEST_EMPTY.format(info.id, info.first_name),
             parse_mode = "html"
         )
+        return
     if update.message.text.lower().startswith("#request"):
         update.message.reply_text(
             text = ON_REQUEST
