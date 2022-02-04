@@ -19,7 +19,7 @@ REQUEST_COMPLETE_TEXT = vars.REQUEST_COMPLETE_TEXT
 ON_REQUEST = "*👋Hello *[{}](tg://user?id={})*\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy. So, This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
 REQUEST = "*Request By *[{}](tg://user?id={})*\n\nRequest: {}*"
 ON_DONE = "*Dear *[{}](tg://user?id={})*😎\n\nYour Request for{} is Completed🥳{}\n\n👍Thanks for Requesting\!*"
-ON_REJECT = "Dear *[{}](tg://user?id={})*😎\n\nYour Request for{} is Rejected😥\n\nReason: {}\n\n👍Thanks for Requesting\!*"
+ON_REJECT = "*Dear *[{}](tg://user?id={})*😎\n\nYour Request for{} is Rejected😥\n\nReason: {}\n\n👍Thanks for Requesting\!*"
 IF_REQUEST_EMPTY = "<b>👋Hello <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
