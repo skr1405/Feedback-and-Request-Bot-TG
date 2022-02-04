@@ -1,13 +1,11 @@
 # Importing Required Modules
 import logging
-from signal import Handlers
 
 from telegram.ext import Updater
-# from telegram.
 
 from bot.handlers.feedback import add_feedback_handlers
 from bot.handlers.request import add_request_handlers
-from bot.configs import Config as vars
+import bot.configs as vars
 
 
 # Logging Stuff
