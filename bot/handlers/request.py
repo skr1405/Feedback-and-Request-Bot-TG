@@ -45,7 +45,7 @@ def user_request(update, context):
     if update.message.text.lower().startswith("#request"):
         info = update.message.from_user
         message = update.message.text[8:].strip()
-        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("❌REJECT❌"), InlineKeyboardButton("✅DONE✅")]]
+        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("❌REJECT❌", callback_data="hell"), InlineKeyboardButton("✅DONE✅", callback_data="hell")]]
         context.bot.send_message(
             chat_id = CHANNEL_ID,
             text = REQUEST,
@@ -59,3 +59,9 @@ def user_request(update, context):
             reply_markup = InlineKeyboardMarkup(inline_keyboard2),
             parse_mode = "markdown"
         )
+
+
+#**************CALLBACK HANDLERS*****************
+
+def hell():
+    pass
