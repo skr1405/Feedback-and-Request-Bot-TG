@@ -116,7 +116,7 @@ def reject(update, context):
         inline_keyboard = [[InlineKeyboardButton("Request Rejected🚫", callback_data="rejected")]]
         update.callback_query.message.edit_text(
             text = f"*REJECTED🚫\n\nReason: {reason}\n\n*~{original_text}~",
-            reply_markup = InlineKeyboardMarkup(inline_keyboard)
+            reply_markup = InlineKeyboardMarkup(inline_keyboard),
             parse_mode = "markdownv2"
         )
         details = re.match(r".*\[(.*)\].*id=(\d+)", original_text)
