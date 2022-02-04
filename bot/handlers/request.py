@@ -16,7 +16,7 @@ CHANNEL_ID = vars.REQUEST_CHANNEL_ID
 CHANNEL_LINK = vars.REQUEST_CHANNEL_LINK
 
 ON_REQUEST = "*👋Hello *[{}](tg://user?id={})*\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy. So, This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
-REQUEST = "*Request By *[{}](tg://user?id={})*\n\nRequest: {}"
+REQUEST = "*Request By *[{}](tg://user?id={})*\n\nRequest: {}*"
 IF_REQUEST_EMPTY = "<b>👋Hello <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
