@@ -70,6 +70,6 @@ def user_request(update, context):
 def done(update, context):
     original_text = update.message.text_markdown
     update.message.edit_text(
-        text = "*COMPLETED✅\n\n*" + original_text,
+        text = f"*COMPLETED✅\n\n*~{original_text}~",
         parse_mode = "markdown"
     )
