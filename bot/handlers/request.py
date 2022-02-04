@@ -21,7 +21,7 @@ TO_USER = "sdfjjsdfj"
 # ADDING HANDLERS
 def add_request_handlers(bot):
     bot.add_handler(
-        MessageHandler(filters=Filters.chat(GROUP_ID) & Filters.regex("#request "), callback=user_request, run_async=True)
+        MessageHandler(filters=Filters.chat(GROUP_ID) & Filters.entity("hashtag"), callback=user_request, run_async=True)
     )
 
 
@@ -31,6 +31,7 @@ def add_request_handlers(bot):
 #***************HANDLERS BELOW******************
 
 def user_request(update, context):
-    update.message.reply_text(
-        text = TO_USER
-    )
+    if update.message.text.startswith("#request"):
+        update.message.reply_text(
+            text = TO_USER
+        )
