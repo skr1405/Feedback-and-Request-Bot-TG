@@ -69,7 +69,7 @@ def user_request(update, context):
 
 def done(update, context):
     user_info = update.callback_query.from_user
-    user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id)
+    user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id).status
     if (user_status == "creator") or (user_status == "administrator"):
         original_text = update.callback_query.message.text_markdown_v2
         update.callback_query.message.edit_text(
