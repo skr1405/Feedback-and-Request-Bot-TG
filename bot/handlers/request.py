@@ -15,7 +15,7 @@ GROUP_ID = vars.REQUEST_GROUP_ID
 CHANNEL_ID = vars.REQUEST_CHANNEL_ID
 
 ON_REQUEST = "sdfjjsdfj"
-IF_REQUEST_EMPTY = "<b>Dear <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use</b>\n<code>#request \<Your Request\></code>"
+IF_REQUEST_EMPTY = "<b>Dear <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
 
@@ -33,7 +33,7 @@ def add_request_handlers(bot):
 
 def user_request(update, context):
     if update.message.text.lower() == "#request":
-        
+
         info = update.message.from_user
         update.message.reply_text(
             text = IF_REQUEST_EMPTY.format(info.id, info.first_name),
