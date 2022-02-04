@@ -1,7 +1,7 @@
 from cProfile import run
 import logging
 
-from telegram.ext import CommandHandler, MessageHandler, Filters
+from telegram.ext import MessageHandler, CallbackQueryHandler, Filters
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import bot.configs as vars
 
@@ -27,6 +27,10 @@ def add_request_handlers(bot):
         MessageHandler(filters=Filters.chat(GROUP_ID) & Filters.entity("hashtag"), callback=user_request, run_async=True)
     )
 
+    bot.add_handler(
+        CallbackQueryHandler(pattern="done", callback=done, run_async=True)
+    )
+
 
 
 
@@ -45,7 +49,7 @@ def user_request(update, context):
     if update.message.text.lower().startswith("#request"):
         info = update.message.from_user
         message = update.message.text[8:].strip()
-        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("🚫Reject", callback_data="hell"), InlineKeyboardButton("Done✅", callback_data="hell")]]
+        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("🚫Reject", callback_data="hell"), InlineKeyboardButton("Done✅", callback_data="done")]]
         context.bot.send_message(
             chat_id = CHANNEL_ID,
             text = REQUEST.format(info.first_name, info.id, message),
@@ -63,5 +67,9 @@ def user_request(update, context):
 
 #**************CALLBACK HANDLERS*****************
 
-def hell():
-    pass
+def done(update, context):
+    original_text = update.message.text_markdown
+    update.message.edit_text(
+        text = "*COMPLETED✅\n\n*" + original_text,
+        parse_mode = "markdown"
+    )
