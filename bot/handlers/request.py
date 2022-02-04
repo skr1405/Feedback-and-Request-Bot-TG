@@ -1,5 +1,5 @@
-from cProfile import run
 import logging
+import re
 
 from telegram.ext import MessageHandler, CallbackQueryHandler, Filters
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
@@ -14,10 +14,11 @@ OWNER_ID = vars.OWNER_ID
 GROUP_ID = vars.REQUEST_GROUP_ID
 CHANNEL_ID = vars.REQUEST_CHANNEL_ID
 CHANNEL_LINK = vars.REQUEST_CHANNEL_LINK
+REQUEST_COMPLETE_TEXT = vars.REQUEST_COMPLETE_TEXT
 
 ON_REQUEST = "*👋Hello *[{}](tg://user?id={})*\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy. So, This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
 REQUEST = "*Request By *[{}](tg://user?id={})*\n\nRequest: {}*"
-ON_DONE = "FBF"
+ON_DONE = "*Dear *[{}](tg://user?id={})*😎\n\nYour Request for {} is Completed✅{}\n\n👍Thanks for Requesting!*"
 IF_REQUEST_EMPTY = "<b>👋Hello <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
@@ -34,6 +35,10 @@ def add_request_handlers(bot):
 
     bot.add_handler(
         CallbackQueryHandler(pattern="reject", callback=reject, run_async=True)
+    )
+
+    bot.add_handler(
+        CallbackQueryHandler(pattern="completed", callback=completed, run_async=True)
     )
 
 
@@ -77,15 +82,29 @@ def done(update, context):
     user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id).status
     if (user_status == "creator") or (user_status == "administrator"):
         original_text = update.callback_query.message.text_markdown_v2
+        inline_keyboard = [[InlineKeyboardButton("Request Completed✅", callback_data="completed")]]
         update.callback_query.message.edit_text(
             text = f"*COMPLETED✅\n\n*~{original_text}~",
+            reply_markup = InlineKeyboardMarkup(inline_keyboard),
             parse_mode = "markdownv2"
+        )
+        details = re.match(r".*\[(.*)\].*id=(\d+)", original_text)
+        context.bot.send_message(
+            chat_id = GROUP_ID,
+            text = ON_DONE.format(details.group(1), details.group(2), "\n".join(original_text.split("\n")[2:])[9:], ("\n"+REQUEST_COMPLETE_TEXT) if REQUEST_COMPLETE_TEXT != "" else ""),
+            parse_mode ="markdownv2"
         )
     else:
         update.callback_query.answer(
             text = "Who the hell are you?\nYou are not Admin😠",
             show_alert = True
         )
+
+def completed(update, context):
+    update.callback_query.answer(
+        text = f"Request is Completed🥳\n{REQUEST_COMPLETE_TEXT}",
+        show_alert = True
+    )
 
 def reject(update, context):
     user_info = update.callback_query.from_user
