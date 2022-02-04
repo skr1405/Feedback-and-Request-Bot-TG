@@ -45,7 +45,7 @@ def user_request(update, context):
     if update.message.text.lower().startswith("#request"):
         info = update.message.from_user
         message = update.message.text[8:].strip()
-        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("REJECT❌", callback_data="hell"), InlineKeyboardButton("DONE✅", callback_data="hell")]]
+        inline_keyboard1 = [[InlineKeyboardButton("Request Message💬", url=update.message.link)],[InlineKeyboardButton("🚫Reject", callback_data="hell"), InlineKeyboardButton("Done✅", callback_data="hell")]]
         context.bot.send_message(
             chat_id = CHANNEL_ID,
             text = REQUEST.format(info.first_name, info.id, message),
