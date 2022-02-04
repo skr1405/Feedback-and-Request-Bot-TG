@@ -32,5 +32,5 @@ def add_request_handlers(bot):
 
 def user_request(update, context):
     update.message.reply_text(
-        text = To_USER
+        text = TO_USER
     )
