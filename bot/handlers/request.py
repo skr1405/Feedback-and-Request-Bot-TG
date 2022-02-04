@@ -13,6 +13,7 @@ logging.getLogger(__name__).setLevel(logging.INFO)
 OWNER_ID = vars.OWNER_ID
 GROUP_ID = vars.REQUEST_GROUP_ID
 CHANNEL_ID = vars.REQUEST_CHANNEL_ID
+CHANNEL_LINK = vars.REQUEST_CHANNEL_LINK
 
 ON_REQUEST = "*👋Hello *[{}](tg://user?id={})*\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy. So, This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
 REQUEST = "vbvbvb"
@@ -48,7 +49,9 @@ def user_request(update, context):
             chat_id = CHANNEL_ID,
             text = REQUEST
         )
+        inline_keyboard = [[InlineKeyboardButton("⏳REQUEST STATUS⏳", url=CHANNEL_LINK)]]
         update.message.reply_text(
             text = ON_REQUEST.format(info.first_name, info.id, message),
+            reply_markup = InlineKeyboardMarkup(inline_keyboard),
             parse_mode = "markdown"
         )
