@@ -31,4 +31,6 @@ def add_request_handlers(bot):
 #***************HANDLERS BELOW******************
 
 def user_request(update, context):
-    pass
+    update.message.reply_text(
+        text = To_USER
+    )
