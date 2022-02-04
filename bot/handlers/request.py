@@ -68,8 +68,16 @@ def user_request(update, context):
 #**************CALLBACK HANDLERS*****************
 
 def done(update, context):
-    original_text = update.callback_query.message.text_markdown_v2
-    update.callback_query.message.edit_text(
-        text = f"*COMPLETED✅\n\n*~{original_text}~",
-        parse_mode = "markdownv2"
-    )
+    user_info = update.callback_query.from_user
+    user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id)
+    if (user_status == "creator") or (user_status == "administrator"):
+        original_text = update.callback_query.message.text_markdown_v2
+        update.callback_query.message.edit_text(
+            text = f"*COMPLETED✅\n\n*~{original_text}~",
+            parse_mode = "markdownv2"
+        )
+    else:
+        update.callback_query.answer(
+            text = "Who the hell are you?\nYou are not Admin😠",
+            show_alert = True
+        )
