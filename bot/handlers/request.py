@@ -14,8 +14,9 @@ OWNER_ID = vars.OWNER_ID
 GROUP_ID = vars.REQUEST_GROUP_ID
 CHANNEL_ID = vars.REQUEST_CHANNEL_ID
 
-ON_REQUEST = "sdfjjsdfj"
-IF_REQUEST_EMPTY = "<b>Dear <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
+ON_REQUEST = "*👋Hello [{}](tg://user?id={}})\n\n🔹Your Request for {} has been submitted to Admins.\n\n🔹Your Request Will Be Uploaded Soon.\n\n🔹Admins Might Be Busy, So This Can Take Some Time⏳.\n\n👇Check Your Request Status Here👇*"
+REQUEST = ""
+IF_REQUEST_EMPTY = "<b>👋Hello <a href='tg://user?id={}'>{}</a>\nYour Request is Empty.\nTo Request Use:👇</b>\n<code>#request &lt;Your Request&gt;</code>"
 
 
 
@@ -41,10 +42,13 @@ def user_request(update, context):
         )
         return
     if update.message.text.lower().startswith("#request"):
+        info = update.message.from_user
+        message = update.message.text.replace("#request", "").strip()
         context.bot.send_message(
             chat_id = CHANNEL_ID,
-
+            text = REQUEST
         )
         update.message.reply_text(
-            text = ON_REQUEST
+            text = ON_REQUEST.format(info.first_name, info.id, message),
+            parse_mode = "markdown"
         )
