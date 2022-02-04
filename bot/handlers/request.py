@@ -33,14 +33,18 @@ def add_request_handlers(bot):
 
 def user_request(update, context):
     if update.message.text.lower() == "#request":
-
         info = update.message.from_user
         update.message.reply_text(
             text = IF_REQUEST_EMPTY.format(info.id, info.first_name),
+            quote = False,
             parse_mode = "html"
         )
         return
     if update.message.text.lower().startswith("#request"):
+        context.bot.send_message(
+            chat_id = CHANNEL_ID,
+
+        )
         update.message.reply_text(
             text = ON_REQUEST
         )

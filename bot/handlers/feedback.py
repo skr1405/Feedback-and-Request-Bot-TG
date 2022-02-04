@@ -88,6 +88,3 @@ def user(update, context):
             caption = MESSAGE.format(reference_id, reference_id, info.first_name, "" if info.last_name == None else " "+info.last_name, update.message.caption_html if update.message.caption_html is not None else ""),
             parse_mode = "html"
         )
-
-
-
