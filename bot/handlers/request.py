@@ -32,7 +32,8 @@ def add_request_handlers(bot):
 #***************HANDLERS BELOW******************
 
 def user_request(update, context):
-    if update.message.lower().text == "#request":
+    if update.message.text.lower() == "#request":
+        
         info = update.message.from_user
         update.message.reply_text(
             text = IF_REQUEST_EMPTY.format(info.id, info.first_name),
