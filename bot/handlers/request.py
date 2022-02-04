@@ -68,7 +68,7 @@ def user_request(update, context):
 #**************CALLBACK HANDLERS*****************
 
 def done(update, context):
-    original_text = update.message.text_markdown
+    original_text = update.callback_query.message.text_markdown
     update.callback_query.message.edit_text(
         text = f"*COMPLETED✅\n\n*~{original_text}~",
         parse_mode = "markdown"
