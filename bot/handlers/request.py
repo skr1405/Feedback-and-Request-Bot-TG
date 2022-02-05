@@ -1,5 +1,7 @@
 import logging
 import re
+from functools import partial
+from time import time
 
 from telegram.ext import MessageHandler, CallbackQueryHandler, Filters
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
@@ -115,8 +117,20 @@ def reject(update, context):
     user_info = update.callback_query.from_user
     user_status = context.bot.get_chat_member(CHANNEL_ID, user_info.id).status
     if (user_status == "creator") or (user_status == "administrator"):
+        update.callback_query.answer(
+            text = "Now Enter the Reason for Rejection.\nYou have 60 Seconds⏱️",
+            show_alert = True
+        )
         original_text = update.callback_query.message.text_markdown_v2
-        reason = "Unavailable"
+        reason = get_value(context.dispatcher, CHANNEL_ID, user_info.id)
+        if reason is None:
+            context.bot.send_message(
+                chat_id = user_info.id,
+                text = f"Time Out for Rejecting\n\n{original_text}",
+                parse_mode = "markdownv2"
+            )
+            return
+
         inline_keyboard = [[InlineKeyboardButton("Request Rejected🚫", callback_data="rejected")]]
         update.callback_query.message.edit_text(
             text = f"*REJECTED🚫\n\nReason: {reason}\n\n*~{original_text}~",
@@ -140,3 +154,33 @@ def rejected(update, context):
         text = f"Request is Rejected😥",
         show_alert = True
     )
+
+
+
+#*****************OTHER FUNCTIONS*******************
+
+def get_value(dp, chat_id, user_id):
+
+    value = None
+    callback = partial(manage_input, value=value)
+
+    dp.add_handler(
+        MessageHandler(filters=Filters.chat(chat_id) & Filters.user(user_id), callback=callback, run_async=True)
+    )
+
+    start = time()
+
+    while value is None:
+        if (time() - start) > 60:
+            break
+    
+    dp.remove_handler(
+        MessageHandler(filters=Filters.chat(chat_id) & Filters.user(user_id), callback=callback, run_async=True)
+    )
+
+    return value
+
+
+def manage_input(update, context, value):
+    value = update.message.text
+    update.message.delete()
