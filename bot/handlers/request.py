@@ -161,7 +161,7 @@ def rejected(update, context):
 
 def get_value(dp, chat_id, user_id):
 
-    value = None
+    value = [None]
     callback = partial(manage_input, value=value, user_id=user_id)
 
     dp.add_handler(
@@ -170,7 +170,7 @@ def get_value(dp, chat_id, user_id):
 
     start = time()
 
-    while value is None:
+    while value[0] is None:
         if (time() - start) > 60:
             break
     
@@ -178,9 +178,9 @@ def get_value(dp, chat_id, user_id):
         MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
     )
 
-    return value
+    return value[0]
 
 
 def manage_input(update, context, value, user_id):
-    value = update.channel_post.text
+    value[0] = update.channel_post.text
     update.channel_post.delete()
