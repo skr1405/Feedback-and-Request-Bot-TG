@@ -182,6 +182,5 @@ def get_value(dp, chat_id, user_id):
 
 
 def manage_input(update, context, value, user_id):
-    if update.message.from_user.id == user_id:
-        value = update.message.text
-        update.message.delete()
+    value = update.channel_post.text
+    update.channel_post.delete()
