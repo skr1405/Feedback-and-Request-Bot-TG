@@ -175,7 +175,7 @@ def get_value(dp, chat_id, user_id):
             break
     
     dp.remove_handler(
-        MessageHandler(handler)
+        handler
     )
 
     return value[0]
