@@ -164,11 +164,12 @@ def get_value(dp, chat_id):
     value = [None]
     callback = partial(manage_input, value=value)
 
+    handler = MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
+
     dp.add_handler(
-        MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
+        handler
     )
 
-    logging.warning(dp.handlers)
     start = time()
 
     while value[0] is None:
@@ -176,9 +177,9 @@ def get_value(dp, chat_id):
             break
     
     dp.remove_handler(
-        MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
+        handler
     )
-    logging.warning(dp.handlers)
+    
     return value[0]
 
 
