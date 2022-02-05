@@ -122,7 +122,7 @@ def reject(update, context):
             show_alert = True
         )
         original_text = update.callback_query.message.text_markdown_v2
-        reason = get_value(context.dispatcher, CHANNEL_ID, user_info.id)
+        reason = get_value(context.dispatcher, CHANNEL_ID)
         if reason is None:
             context.bot.send_message(
                 chat_id = user_info.id,
@@ -159,15 +159,16 @@ def rejected(update, context):
 
 #*****************OTHER FUNCTIONS*******************
 
-def get_value(dp, chat_id, user_id):
+def get_value(dp, chat_id):
 
     value = [None]
-    callback = partial(manage_input, value=value, user_id=user_id)
+    callback = partial(manage_input, value=value)
 
-    handler = dp.add_handler(
+    dp.add_handler(
         MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
     )
 
+    logging.warning(dp.handlers)
     start = time()
 
     while value[0] is None:
@@ -175,12 +176,12 @@ def get_value(dp, chat_id, user_id):
             break
     
     dp.remove_handler(
-        handler
+        MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
     )
-
+    logging.warning(dp.handlers)
     return value[0]
 
 
-def manage_input(update, context, value, user_id):
+def manage_input(update, context, value):
     value[0] = update.channel_post.text
     update.channel_post.delete()
