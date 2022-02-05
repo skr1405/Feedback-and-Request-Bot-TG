@@ -175,7 +175,7 @@ def get_value(dp, chat_id, user_id):
             break
     
     dp.remove_handler(
-        MessageHandler(filters=Filters.chat(chat_id) & Filters.user(user_id), callback=callback, run_async=True)
+        MessageHandler(filters=Filters.chat(chat_id), callback=callback, run_async=True)
     )
 
     return value[0]
