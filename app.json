@@ -35,7 +35,7 @@
             "description": "Request Channel Link"
         },
         "REQUEST_COMPLETE_TEXT": {
-            "description": "Request Complete Message",
+            "description": "Optional, Request Complete Message",
             "required": false
         }
     }
