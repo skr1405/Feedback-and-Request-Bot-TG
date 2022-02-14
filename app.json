@@ -11,6 +11,10 @@
     "env": {
         "BOT_TOKEN": {
             "description": "Your Bot Token from @BotFather"
+        },
+        "BASE_URL_OF_BOT": {
+            "value": "https://appname.herokuapp.com/",
+            "description": "Your Bot Token from @BotFather"
         }
     }
 }
