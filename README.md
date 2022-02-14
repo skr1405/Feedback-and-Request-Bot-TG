@@ -1,5 +1,5 @@
 # Feedback-and-Request-Bot-TG
-Telegram bot to request content and give feedback
+Telegram Bot to Request Content and Give Feedback
 
 # Deployment
 ## Heroku
