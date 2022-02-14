@@ -13,8 +13,17 @@
             "description": "Your Bot Token from @BotFather"
         },
         "BASE_URL_OF_BOT": {
-            "value": "https://appname.herokuapp.com/",
-            "description": "Your Bot Token from @BotFather"
+            "value": "https://<App Name>.herokuapp.com/",
+            "description": "Heroku App URL"
+        },
+        "OWNER_ID": {
+            "description": "Your Telegram ID"
+        },
+        "GROUP_LINK": {
+            "description": "Telegram Group Link"
+        },
+        "CHANNEL_LINK": {
+            "description": "Telegram Channel Link"
         }
     }
 }
