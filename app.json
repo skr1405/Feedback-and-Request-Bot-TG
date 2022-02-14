@@ -24,6 +24,19 @@
         },
         "CHANNEL_LINK": {
             "description": "Telegram Channel Link"
+        },
+        "REQUEST_GROUP_ID": {
+            "description": "Request Group ID"
+        },
+        "REQUEST_CHANNEL_ID": {
+            "description": "Request Channel ID"
+        },
+        "REQUEST_CHANNEL_LINK": {
+            "description": "Request Channel Link"
+        },
+        "REQUEST_COMPLETE_TEXT": {
+            "description": "Request Complete Message",
+            "required": false
         }
     }
 }
