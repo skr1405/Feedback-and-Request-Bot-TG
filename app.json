@@ -1,5 +1,16 @@
 {
     "name": "Feedback and Request Bot",
     "description": "Telegram Bot to Request Content and Give Feedback",
-    "repository": "https://github.com/skr1405/Feedback-and-Request-Bot-TG"
+    "repository": "https://github.com/skr1405/Feedback-and-Request-Bot-TG",
+    "keywords": [
+        "telegram bot",
+        "python-telegram-bot",
+        "feedback bot"
+    ],
+    "success_url": "/welcome",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Your Bot Token from @BotFather"
+        }
+    }
 }
