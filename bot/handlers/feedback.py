@@ -58,8 +58,12 @@ def start(update, context):
 
 def about(update, context):
     bot_details = context.bot.get_me()
-    update.message.reply_text(
-        "*My Name: [{}}](tg://user?id={})\nSource: [Feedback-and-Request-Bot-TG](https://github.com/skr1405/Feedback-and-Request-Bot-TG)*".format(bot_details.first_name, bot_details.id),
+    if update.message is not None:
+        message = update.message
+    else:
+        message = update.callback_query.message
+    message.reply_text(
+        "*My Name: [{}](tg://user?id={})\nSource: [Feedback-and-Request-Bot-TG](https://github.com/skr1405/Feedback-and-Request-Bot-TG)*".format(bot_details.first_name, bot_details.id),
         parse_mode = "markdownv2"
     )
 
