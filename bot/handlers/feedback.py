@@ -49,7 +49,7 @@ def start(update, context):
         text = LOG_TEXT.format(update.message.chat.id,update.message.chat.id,update.message.chat.first_name,"" if update.message.chat.last_name == None else " "+update.message.chat.last_name),
         parse_mode = "html"
     )
-    inline_keyboard = [[InlineKeyboardButton("💬GROUP💬", url = f"{vars.GROUP_LINK}"), InlineKeyboardButton("📢CHANNEL📢", url = f"{vars.CHANNEL_LINK}")], [InlineKeyboardButton("❗ABOUT❗", callback_data=about)]]
+    inline_keyboard = [[InlineKeyboardButton("💬GROUP💬", url = f"{vars.GROUP_LINK}"), InlineKeyboardButton("📢CHANNEL📢", url = f"{vars.CHANNEL_LINK}")], [InlineKeyboardButton("❗ABOUT❗", callback_data="about")]]
     update.message.reply_text(
         "*Hi {}!*\n".format(update.message.chat.first_name)+START_TEXT,
         reply_markup = InlineKeyboardMarkup(inline_keyboard),
