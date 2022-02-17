@@ -64,7 +64,8 @@ def about(update, context):
         message = update.callback_query.message
     message.reply_text(
         "*My Name: [{}](tg://user?id={})\nSource: [Feedback\-and\-Request\-Bot\-TG](https://github.com/skr1405/Feedback\-and\-Request\-Bot\-TG)*".format(bot_details.first_name, bot_details.id),
-        parse_mode = "markdownv2"
+        parse_mode = "markdownv2",
+        disable_web_page_preview = True
     )
 
 def reply(update, context):
