@@ -63,7 +63,7 @@ def about(update, context):
     else:
         message = update.callback_query.message
     message.reply_text(
-        "*My Name: [{}](tg://user?id={})\nSource: [Feedback-and-Request-Bot-TG](https://github.com/skr1405/Feedback-and-Request-Bot-TG)*".format(bot_details.first_name, bot_details.id),
+        "*My Name: [{}](tg://user?id={})\nSource: [Feedback\-and\-Request\-Bot\-TG](https://github.com/skr1405/Feedback\-and\-Request\-Bot\-TG)*".format(bot_details.first_name, bot_details.id),
         parse_mode = "markdownv2"
     )
 
