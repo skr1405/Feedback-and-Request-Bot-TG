@@ -5,6 +5,7 @@ from time import time
 
 from telegram.ext import MessageHandler, CallbackQueryHandler, Filters
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
+from telegram.utils.helpers import escape_markdown
 import bot.configs as vars
 
 logging.getLogger(__name__).setLevel(logging.INFO)
@@ -131,6 +132,7 @@ def reject(update, context):
             )
             return
 
+        reason = escape_markdown(reason, version=2)
         inline_keyboard = [[InlineKeyboardButton("Request Rejected🚫", callback_data="rejected")]]
         update.callback_query.message.edit_text(
             text = f"*REJECTED🚫\n\nReason: {reason}\n\n*~{original_text}~",
